@@ -15,6 +15,9 @@ def main():
     kk_img = pg.transform.flip(kk_img, True, False)   #練習3
     kk_rct = kk_img.get_rect()     #練習8-1「こうかとんRectを抽出」
     kk_rct.center = 300, 200
+
+    dir_x = 0
+    dir_y = 0
     tmr = 0
     while True:
         for event in pg.event.get():
@@ -22,13 +25,21 @@ def main():
         key_lst = pg.key.get_pressed()
         #print(key_lst)
         if key_lst[pg.K_UP]:
-            kk_rct.move_ip((0, -1))
+            dir_y = -1
+            dir_x = 0
         elif key_lst[pg.K_DOWN]:
-            kk_rct.move_ip((0, 1))
+            dir_y = 1
+            dir_x = 0
         elif key_lst[pg.K_RIGHT]:
-            kk_rct.move_ip((1, 0))
+            dir_x = 2
+            dir_y = 0
         elif key_lst[pg.K_LEFT]:
-            kk_rct.move_ip((-1, 0))
+            dir_x = -1
+            dir_y = 0
+        else:
+            dir_x = 0
+            dir_y = 0
+        kk_rct.move_ip((dir_x, dir_y))
 
         x = tmr % 3200
         #print(tmr, x)
@@ -37,6 +48,8 @@ def main():
         screen.blit(bg_img, [-x+3200, 0])
         screen.blit(bg_img2, [-x+4800, 0])    #練習7-2
         screen.blit(kk_img, kk_rct)   #練習4
+
+        kk_rct.move_ip((-1, 0))
         pg.display.update()
         tmr += 1
         clock.tick(200)    #練習5
