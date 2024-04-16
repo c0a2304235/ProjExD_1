@@ -39,7 +39,7 @@ def main():
         else:
             dir_x = 0
             dir_y = 0
-        kk_rct.move_ip((dir_x, dir_y))
+        kk_rct.move_ip((dir_x-1, dir_y))
 
         x = tmr % 3200
         #print(tmr, x)
@@ -49,7 +49,6 @@ def main():
         screen.blit(bg_img2, [-x+4800, 0])    #練習7-2
         screen.blit(kk_img, kk_rct)   #練習4
 
-        kk_rct.move_ip((-1, 0))
         pg.display.update()
         tmr += 1
         clock.tick(200)    #練習5
